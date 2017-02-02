@@ -27,10 +27,12 @@ def setLogin(filename):
     :filename: TODO
     :returns: TODO
     """
+    global USERNAME
+    global PASSWORD
     with open(filename,'r') as fid:
         lines = fid.readlines()
-        USERNAME = lines[0].split('\n')
-        PASSWORD = lines[1].split('\n')
+        USERNAME = lines[0].split('\n')[0]
+        PASSWORD = lines[1].split('\n')[0]
 
 def addPost(title, content, abstract, groups):
     b = webdriver.Firefox()
