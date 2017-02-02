@@ -6,7 +6,7 @@
 Tool Description
 
 Usage:
-python addPost.py blog.md csdn_login
+python addPost.py blog.md [csdn_login]
 
 '''
 
@@ -18,8 +18,8 @@ import sys
 def pause(length=1):
     time.sleep(length)
 
-USERNAME = 'DuinoDu'
-PASSWORD = '8460637duyuan'
+USERNAME = ''
+PASSWORD = ''
 
 def setLogin(filename):
     """Set user and password
@@ -83,12 +83,13 @@ def readBlog(filename):
         return title, groups, abstract,  content
 
 def main(argv):
-    assert(len(argv) == 3)
-    setLogin(argv[2])
-    print USERNAME
-    print PASSWORD
-    #title, groups, abstract,  content = readBlog(argv[1])
-    #addPost(title, content, abstract, groups)
+    assert(len(argv) <= 3)
+    if len(argv) == 2:
+        setLogin('/home/duino/tmp/python/csdn/csdn_login')
+    else:
+        setLogin(argv[2])
+    title, groups, abstract,  content = readBlog(argv[1])
+    addPost(title, content, abstract, groups)
 
 if __name__ == "__main__":
     print(__doc__)
